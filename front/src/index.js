@@ -1,11 +1,15 @@
 import React from 'react';
+import Axios from 'axios';
 import ReactDOM from 'react-dom';
 import Home from './components/home/Home';
 import Login from './components/login/Login';
 import Cadastro from './components/cadastro/Cadastro';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-//Axios.defaults.headers.common['access-token'] = localStorage.getItem("accessToken");
+Axios.interceptors.request.use((config) => {
+  config.headers.common['access-token'] = localStorage.getItem("accessToken");
+  return config;
+});
 
 ReactDOM.render(
   <BrowserRouter>

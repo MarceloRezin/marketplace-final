@@ -17,7 +17,7 @@ export default class Login extends React.Component{
 
   handlePost = (login) => {    
     Axios.post("http://localhost:3001/usuarios/logar", login).then((resp) => {
-      console.log(resp);
+      localStorage.setItem("accessToken", resp.data.token);
     }).catch((err) => {
       this.showToast(err.response.data.error, "error");
     });
