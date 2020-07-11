@@ -24,7 +24,7 @@ export default class Home extends React.Component{
             <Button color="primary" variant="outlined" href="/login">Login</Button>
           </Grid>
           <Grid item>
-            <Button color="secondary" variant="outlined">Criar Conta</Button>
+            <Button color="secondary" variant="outlined" href="/cadastro">Criar Conta</Button>
           </Grid>
         </Grid>
       </Grid>

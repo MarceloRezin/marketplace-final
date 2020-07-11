@@ -1,9 +1,9 @@
 import React from 'react';
 import Axios from 'axios';
-import LoginForm from './LoginForm';
+import CadastroForm from './CadastroForm';
 import Toast from '../toast/Toast';
 
-export default class Login extends React.Component{
+export default class Cadastro extends React.Component{
 
   constructor(props){
     super(props);
@@ -11,13 +11,16 @@ export default class Login extends React.Component{
     this.state = {
       toastTipo: "",
       toastOpen: false,
-      toastMensagem: "",
+      toastMensagem: ""
     };
   }
 
-  handlePost = (login) => {    
-    Axios.post("http://localhost:3001/usuarios/logar", login).then((resp) => {
-      console.log(resp);
+  handlePost = (usuario) => {   
+    Axios.post("http://localhost:3001/usuarios", usuario).then((resp) => {
+
+      this.showToast("Cadastro efetuado com sucesso.", "success");
+      setTimeout(() => this.props.history.push("/login"), 2000);
+
     }).catch((err) => {
       this.showToast(err.response.data.error, "error");
     });
@@ -45,7 +48,7 @@ export default class Login extends React.Component{
   render(){
     return(
     <div>
-      <LoginForm handleSubmit={this.handlePost}></LoginForm>
+      <CadastroForm handleSubmit={this.handlePost}></CadastroForm>
       <Toast open={this.state.toastOpen} type={this.state.toastTipo} message={this.state.toastMensagem} handleClose={this.closeToast} />
     </div>
     );
