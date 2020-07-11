@@ -1,5 +1,6 @@
 import React from 'react';
 import { AppBar, Tabs, Tab } from '@material-ui/core';
+import Anuncios from '../anuncios/Anuncios';
 
 export default class Marketplace extends React.Component{
 
@@ -26,7 +27,7 @@ export default class Marketplace extends React.Component{
           </Tabs>
         </AppBar>
         {this.state.indice === 0 && (
-          <div>Oi</div>
+          <Anuncios />
         )}
       </div>
     );

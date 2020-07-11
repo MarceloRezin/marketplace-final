@@ -8,7 +8,7 @@ import Marketplace from './components/marketplace/Marketplace';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 Axios.interceptors.request.use((config) => {
-  config.headers.common['access-token'] = localStorage.getItem("accessToken");
+  config.headers.common['x-access-token'] = localStorage.getItem("accessToken");
   return config;
 });
 
