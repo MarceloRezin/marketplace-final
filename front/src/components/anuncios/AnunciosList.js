@@ -10,7 +10,7 @@ import {
   Typography,
   IconButton
 } from '@material-ui/core';
-import { Edit, Delete } from '@material-ui/icons'
+import { Edit, Delete } from '@material-ui/icons';
 
 export default class AnunciosList extends React.Component{
 
@@ -24,7 +24,6 @@ export default class AnunciosList extends React.Component{
               <TableCell align="right">Descrição</TableCell>
               <TableCell align="right">Valor (R$)</TableCell>
               <TableCell align="right">Categoria</TableCell>
-              <TableCell align="right"></TableCell>
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
@@ -41,8 +40,6 @@ export default class AnunciosList extends React.Component{
                 <IconButton aria-label="Editar item" component="span">
                   <Edit style={{ color: 'black' }} />
                 </IconButton>
-              </TableCell>
-              <TableCell align="right">
                 <IconButton aria-label="Deletar item" component="span">
                   <Delete style={{ color: 'black' }} />
                 </IconButton>
@@ -52,7 +49,7 @@ export default class AnunciosList extends React.Component{
         </TableBody>
         </Table>
         {this.props.anuncios.length < 1 && (
-          <Typography variant="h5">Não foram encontrados anúncios.</Typography>
+          <Typography variant="h6" style={{"padding": 10}}>Não foram encontrados anúncios.</Typography>
         )}
       </TableContainer>
     );
