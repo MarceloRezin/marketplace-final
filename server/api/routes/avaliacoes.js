@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
         limit = parseInt(limitQuery);
     }
 
-    Avaliacao.find(query).limit(limit).exec((err, doc) => {
+    Avaliacao.find(query).populate("anuncio").populate("usuario").limit(limit).exec((err, doc) => {
         if(err){
             res.status(500).json({error: "Não foi possível listar as avaliações."});
         }else{
