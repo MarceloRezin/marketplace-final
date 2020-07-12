@@ -40,7 +40,7 @@ export default class AnunciosList extends React.Component{
                 <IconButton aria-label="Editar item" component="span" onClick={() => this.props.handleEdit(anuncio)}>
                   <Edit style={{ color: 'black' }} />
                 </IconButton>
-                <IconButton aria-label="Deletar item" component="span">
+                <IconButton aria-label="Deletar item" component="span" onClick={() => this.props.handleDelete(anuncio._id)}>
                   <Delete style={{ color: 'black' }} />
                 </IconButton>
               </TableCell>

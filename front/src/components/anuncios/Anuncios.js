@@ -3,6 +3,7 @@ import Axios from 'axios';
 import Toast from '../toast/Toast';
 import AnunciosList from './AnunciosList';
 import AnuncioForm from './AnuncioForm';
+import ConfirmDialog from '../confirm-dialog/ConfirmDialog';
 import { Grid, TextField, IconButton } from '@material-ui/core';
 import { Search, NoteAdd } from '@material-ui/icons';
 
@@ -23,7 +24,10 @@ export default class Anuncios extends React.Component{
 
       toastTipo: "",
       toastOpen: false,
-      toastMensagem: ""
+      toastMensagem: "",
+
+      confirmOpen: false,
+      idDelete: null
     };
   }
 
@@ -41,7 +45,6 @@ export default class Anuncios extends React.Component{
 
   handleList = () => {
     Axios.get("http://localhost:3001/anuncios", {params: {nome: this.state.query}}).then((resp) => {
-      console.log(resp.data);
       this.setState({
         anuncios: resp.data
       });
@@ -112,6 +115,26 @@ export default class Anuncios extends React.Component{
     });
   };
 
+  handleConfirm = (id) => {
+    this.setState({
+      idDelete: id
+    });
+
+    this.openConfirm();
+  };
+
+  handleDelete = (id) => {   
+    Axios.delete("http://localhost:3001/anuncios/" + id).then((resp) => {
+
+      this.handleList();
+      this.closeForm();
+      this.showToast("Anúncio removido com sucesso.", "success");
+
+    }).catch((err) => {
+      this.showToast(err.response.data.error, "error");
+    });
+  };
+
   openForm = (anuncioForm) => {
     this.setState({
       showForm: true,
@@ -141,6 +164,19 @@ export default class Anuncios extends React.Component{
     
     this.setState({
       toastOpen: false
+    });
+  };
+
+  openConfirm = () => {
+    this.setState({
+      confirmOpen: true
+    });
+  };
+  
+  closeConfirm = () => {
+    this.setState({
+      confirmOpen: false,
+      idDelete: null
     });
   };
 
@@ -175,9 +211,21 @@ export default class Anuncios extends React.Component{
           </Grid>
         </Grid>
         <Grid item>
-          <AnunciosList handleEdit={this.openForm}  anuncios={this.state.anuncios} />
+          <AnunciosList handleEdit={this.openForm} handleDelete={this.handleConfirm}  anuncios={this.state.anuncios} />
         </Grid>
         <AnuncioForm show={this.state.showForm} anuncio={this.state.anuncioForm} categorias={this.state.categorias} usuarios={this.state.usuarios} handleClose={this.closeForm} handleSubmit={this.handleSave} />
+        <ConfirmDialog 
+          open={this.state.confirmOpen}
+          handleClose={this.closeConfirm}
+          handleConfirm={() => {
+            this.handleDelete(this.state.idDelete);
+            this.closeConfirm();
+          }}
+          titulo="Confirmção de Exclusão"
+          textoConteudo="Tem certeza que deseja apagar este anúncio?"
+          textoNao="Cancelar"
+          textoSim="Excluir"
+        />
         <Toast open={this.state.toastOpen} type={this.state.toastTipo} message={this.state.toastMensagem} handleClose={this.closeToast} />
     </Grid>
     );
