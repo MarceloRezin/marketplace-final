@@ -76,7 +76,7 @@ export default class Anuncios extends React.Component{
     }
 
     if(anuncio.categoria < 0){ //Não é obrigatório
-      delete anuncio.categoria
+      anuncio.categoria = null;
     }else{
       anuncio.categoria = this.state.categorias[anuncio.categoria];
     }
@@ -101,7 +101,7 @@ export default class Anuncios extends React.Component{
   };
   
   handlePut = (anuncio) => {   
-    Axios.put("http://localhost:3001/anuncios" + anuncio.id, anuncio).then((resp) => {
+    Axios.put("http://localhost:3001/anuncios/" + anuncio.id, anuncio).then((resp) => {
 
       this.handleList();
       this.closeForm();
@@ -175,9 +175,9 @@ export default class Anuncios extends React.Component{
           </Grid>
         </Grid>
         <Grid item>
-          <AnunciosList handleList={this.handleList} anuncios={this.state.anuncios} />
+          <AnunciosList handleEdit={this.openForm}  anuncios={this.state.anuncios} />
         </Grid>
-        <AnuncioForm show={this.state.showForm} anuncio={this.state.anuncioForm} categorias={this.state.categorias.map( c => c.nome)} usuarios={this.state.usuarios.map( c => c.nome)} handleClose={this.closeForm} handleSubmit={this.handleSave} />
+        <AnuncioForm show={this.state.showForm} anuncio={this.state.anuncioForm} categorias={this.state.categorias} usuarios={this.state.usuarios} handleClose={this.closeForm} handleSubmit={this.handleSave} />
         <Toast open={this.state.toastOpen} type={this.state.toastTipo} message={this.state.toastMensagem} handleClose={this.closeToast} />
     </Grid>
     );

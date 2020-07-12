@@ -45,9 +45,9 @@ export default class AnuncioForm extends React.Component{
           id: this.props.anuncio._id,
           nome: this.props.anuncio.nome,
           descricao: this.props.anuncio.descricao,
-          valor: this.props.anuncio.valor,
-          usuario: this.props.anuncio.usuario,
-          categoria: this.props.anuncio.categoria,
+          valor: this.props.anuncio.valor["$numberDecimal"],
+          usuario: this.props.usuarios.findIndex(u => u._id === this.props.anuncio.usuario),
+          categoria: this.props.anuncio.categoria ? this.props.categorias.findIndex( c => c._id === this.props.anuncio.categoria._id) : -1,
         });
       }
     }
@@ -121,10 +121,10 @@ export default class AnuncioForm extends React.Component{
                 spacing={2}
               >
                 <Grid item>
-                  <Select id="categoria" label="Categoria" value={this.state.categoria} onChange={this.handleChange} itens={this.props.categorias} />
+                  <Select id="categoria" label="Categoria" value={this.state.categoria} onChange={this.handleChange} itens={this.props.categorias.map( c => c.nome)} />
                 </Grid>
                 <Grid item>
-                  <Select id="usuario" label="Usuário" value={this.state.usuarios} onChange={this.handleChange} itens={this.props.usuarios} required />
+                  <Select id="usuario" label="Usuário" value={this.state.usuario} onChange={this.handleChange} itens={this.props.usuarios.map( u => u.nome)} required />
                 </Grid>
               </Grid>
             </Grid>
