@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
         limit = parseInt(limitQuery);
     }
 
-    Anuncio.find(query).limit(limit).exec((err, doc) => {
+    Anuncio.find(query).populate("categoria").limit(limit).exec((err, doc) => {
         if(err){
             res.status(500).json({error: "Não foi possível listar os anúncios."});
         }else{

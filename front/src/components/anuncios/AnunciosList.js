@@ -35,7 +35,7 @@ export default class AnunciosList extends React.Component{
               </TableCell>
               <TableCell align="right">{anuncio.descricao}</TableCell>
               <TableCell align="right">{anuncio.valor["$numberDecimal"]}</TableCell>
-              <TableCell align="right">{anuncio.categoria}</TableCell>
+              <TableCell align="right">{anuncio.categoria ? anuncio.categoria.nome  : ""}</TableCell>
               <TableCell align="right">
                 <IconButton aria-label="Editar item" component="span">
                   <Edit style={{ color: 'black' }} />
