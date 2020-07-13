@@ -68,9 +68,7 @@ export default class Anuncios extends React.Component{
   }
 
   handleSave = (anuncio) => {
-    
-    console.log(anuncio.usuario);
-    
+
     if(anuncio.usuario < 0){
       this.showToast("Informe o usuário.", "error");
       return;

@@ -46,8 +46,8 @@ export default class CompraForm extends React.Component{
           quantidade: this.props.compra.quantidade,
           valorUnitario: this.props.compra.valorUnitario["$numberDecimal"],
           valorFinal: this.props.compra.valorFinal["$numberDecimal"],
-          usuario: this.props.usuarios.findIndex( u => u._id === this.props.compra.usuario._id),
-          anuncio: this.props.anuncios.findIndex( a => a._id === this.props.compra.anuncio._id),
+          usuario: this.props.compra.usuario ? this.props.usuarios.findIndex( u => u._id === this.props.compra.usuario._id) : -1,
+          anuncio: this.props.compra.anuncio ? this.props.anuncios.findIndex( a => a._id === this.props.compra.anuncio._id) : -1,
         });
       }
     }

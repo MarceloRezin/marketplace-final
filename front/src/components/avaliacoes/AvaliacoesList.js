@@ -32,8 +32,8 @@ export default class AvaliacoesList extends React.Component{
               <TableCell component="th" scope="row">
                 {avaliacao.descricao}
               </TableCell>
-              <TableCell align="right">{avaliacao.anuncio.nome}</TableCell>
-              <TableCell align="right">{avaliacao.usuario.nome}</TableCell>
+              <TableCell align="right">{avaliacao.anuncio ? avaliacao.anuncio.nome : "Anúncio Removido"}</TableCell>
+              <TableCell align="right">{avaliacao.usuario ? avaliacao.usuario.nome : "Usuário Removido"}</TableCell>
               <TableCell align="right">
                 <IconButton aria-label="Editar item" component="span" onClick={() => this.props.handleEdit(avaliacao)}>
                   <Edit style={{ color: 'black' }} />

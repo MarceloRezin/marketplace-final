@@ -30,9 +30,9 @@ export default class ComprasList extends React.Component{
           {this.props.compras.map((compra) => (
             <TableRow key={compra._id}>
               <TableCell component="th" scope="row">
-                {compra.usuario.nome}
+                {compra.usuario ? compra.usuario.nome : "Usuário Removido"}
               </TableCell>
-              <TableCell align="right">{compra.anuncio.nome}</TableCell>
+              <TableCell align="right">{compra.anuncio ? compra.anuncio.nome : "Anúncio Removido"}</TableCell>
               <TableCell align="right">{compra.valorFinal["$numberDecimal"]}</TableCell>
               <TableCell align="right">
                 <IconButton aria-label="Editar item" component="span" onClick={() => this.props.handleEdit(compra)}>

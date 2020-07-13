@@ -46,7 +46,7 @@ export default class AnuncioForm extends React.Component{
           nome: this.props.anuncio.nome,
           descricao: this.props.anuncio.descricao,
           valor: this.props.anuncio.valor["$numberDecimal"],
-          usuario: this.props.usuarios.findIndex(u => u._id === this.props.anuncio.usuario),
+          usuario: this.props.anuncio.categoria ? this.props.usuarios.findIndex(u => u._id === this.props.anuncio.usuario) : -1,
           categoria: this.props.anuncio.categoria ? this.props.categorias.findIndex( c => c._id === this.props.anuncio.categoria._id) : -1,
         });
       }

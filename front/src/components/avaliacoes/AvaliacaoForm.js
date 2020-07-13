@@ -42,8 +42,8 @@ export default class AvaliacaoForm extends React.Component{
         this.setState({
           id: this.props.avaliacao._id,
           descricao: this.props.avaliacao.descricao,
-          usuario: this.props.usuarios.findIndex(u => u._id === this.props.avaliacao.usuario._id),
-          anuncio: this.props.anuncios.findIndex( c => c._id === this.props.avaliacao.anuncio._id),
+          usuario: this.props.avaliacao.usuario ? this.props.usuarios.findIndex(u => u._id === this.props.avaliacao.usuario._id) : -1,
+          anuncio: this.props.avaliacao.anuncio ? this.props.anuncios.findIndex( c => c._id === this.props.avaliacao.anuncio._id) : -1,
         });
       }
     }
