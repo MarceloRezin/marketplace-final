@@ -245,7 +245,7 @@ export default class Compras extends React.Component{
             this.closeConfirm();
           }}
           titulo="Confirmção de Exclusão"
-          textoConteudo="Tem certeza que deseja apagar este anúncio?"
+          textoConteudo="Tem certeza que deseja apagar esta compra?"
           textoNao="Cancelar"
           textoSim="Excluir"
         />
