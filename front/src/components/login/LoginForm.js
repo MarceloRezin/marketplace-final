@@ -37,7 +37,7 @@ export default class LoginForm extends React.Component{
         spacing={2}
       >
         <Grid item>
-          <Typography variant="h3">Login</Typography>
+          <Typography variant="h2">Informe e-mail e senha para realizar o login:</Typography>
         </Grid>
         <Grid item>
           <TextField id="email" type="email" label="E-mail" required variant="outlined" value={this.state.email} onChange={this.handleChange}/>

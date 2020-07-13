@@ -12,6 +12,9 @@ export default class Home extends React.Component{
       spacing={2}
     >
       <Grid item>
+        <Typography variant="h2">Bem vindo ao Marketplace!</Typography>
+      </Grid>
+      <Grid item>
         <Typography variant="h4">Para continuar realize o login ou crie uma conta</Typography>
       </Grid>
       <Grid item>

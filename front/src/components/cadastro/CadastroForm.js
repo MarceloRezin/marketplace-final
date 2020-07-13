@@ -41,7 +41,7 @@ export default class CadastroForm extends React.Component{
         spacing={2}
       >
         <Grid item>
-          <Typography variant="h3">Informe os dados para realizar o cadastro</Typography>
+          <Typography variant="h2">Informe os dados para realizar o cadastro:</Typography>
         </Grid>
         <Grid item>
           <TextField id="nome" label="Nome" required variant="outlined" value={this.state.nome} onChange={this.handleChange}/>
