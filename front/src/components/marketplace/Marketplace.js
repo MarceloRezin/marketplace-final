@@ -1,5 +1,6 @@
 import React from 'react';
-import { AppBar, Tabs, Tab } from '@material-ui/core';
+import { AppBar, Tabs, Tab, Toolbar, Typography, IconButton } from '@material-ui/core';
+import { ExitToApp } from '@material-ui/icons';
 import Anuncios from '../anuncios/Anuncios';
 import Categorias from '../categorias/Categorias';
 import Avaliacoes from '../avaliacoes/Avaliacoes';
@@ -22,10 +23,23 @@ export default class Marketplace extends React.Component{
     });
   };
 
+  logout = () => {
+    localStorage.setItem("accessToken", "");
+    this.props.history.push("/")
+  };
+
   render(){
     return(
       <div>
         <AppBar position="static">
+          <Toolbar>
+            <Typography style={{flex: 1}} variant="h6">
+              Marketplace
+            </Typography>
+            <IconButton edge="end" color="inherit" onClick={this.logout}>
+              <ExitToApp />
+            </IconButton>
+          </Toolbar>
           <Tabs value={this.state.indice} onChange={this.handleChange} aria-label="Abas do marketplace">
             <Tab label="Anúncios" />
             <Tab label="Categorias" />
