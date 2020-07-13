@@ -12,6 +12,16 @@ Axios.interceptors.request.use((config) => {
   return config;
 });
 
+Axios.interceptors.response.use((config) => {  
+  return config;
+}, (erro) => {
+  if(erro.response.status === 403){ //Sem permissao
+    window.location.href = "/"
+  }else{
+    return erro;
+  }
+});
+
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
