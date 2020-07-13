@@ -3,6 +3,7 @@ import { AppBar, Tabs, Tab } from '@material-ui/core';
 import Anuncios from '../anuncios/Anuncios';
 import Categorias from '../categorias/Categorias';
 import Avaliacoes from '../avaliacoes/Avaliacoes';
+import Compras from '../compras/Compras';
 
 export default class Marketplace extends React.Component{
 
@@ -28,6 +29,7 @@ export default class Marketplace extends React.Component{
             <Tab label="Anúncios" />
             <Tab label="Categorias" />
             <Tab label="Avaliações" />
+            <Tab label="Compras" />
           </Tabs>
         </AppBar>
         {this.state.indice === 0 && (
@@ -38,6 +40,9 @@ export default class Marketplace extends React.Component{
         )}
         {this.state.indice === 2 && (
           <Avaliacoes />
+        )}
+        {this.state.indice === 3 && (
+          <Compras />
         )}
       </div>
     );

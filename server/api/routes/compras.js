@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
         limit = parseInt(limitQuery);
     }
 
-    Compra.find(query).limit(limit).exec((err, doc) => {
+    Compra.find(query).populate("usuario").populate("anuncio").limit(limit).exec((err, doc) => {
         if(err){
             res.status(500).json({error: "Não foi possível listar as compras."});
         }else{
