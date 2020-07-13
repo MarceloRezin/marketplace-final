@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Tabs, Tab, Toolbar, Typography, IconButton } from '@material-ui/core';
 import { ExitToApp } from '@material-ui/icons';
+import ConfirmDialog from '../confirm-dialog/ConfirmDialog';
 import Anuncios from '../anuncios/Anuncios';
 import Categorias from '../categorias/Categorias';
 import Avaliacoes from '../avaliacoes/Avaliacoes';
@@ -13,13 +14,26 @@ export default class Marketplace extends React.Component{
     super(props);
 
     this.state = {
-      indice: 0
+      indice: 0,
+      confirmOpen: false
     };
   }
 
   handleChange = (event, newValue) => {
     this.setState({
       indice: newValue
+    });
+  };
+
+  openConfirm = () => {
+    this.setState({
+      confirmOpen: true
+    });
+  };
+
+  closeConfirm = () => {
+    this.setState({
+      confirmOpen: false
     });
   };
 
@@ -36,7 +50,7 @@ export default class Marketplace extends React.Component{
             <Typography style={{flex: 1}} variant="h6">
               Marketplace
             </Typography>
-            <IconButton edge="end" color="inherit" onClick={this.logout}>
+            <IconButton edge="end" color="inherit" onClick={this.openConfirm}>
               <ExitToApp />
             </IconButton>
           </Toolbar>
@@ -63,6 +77,18 @@ export default class Marketplace extends React.Component{
         {this.state.indice === 4 && (
           <Usuarios />
         )}
+        <ConfirmDialog 
+          open={this.state.confirmOpen}
+          handleClose={this.closeConfirm}
+          handleConfirm={() => {
+            this.logout();
+            this.closeConfirm();
+          }}
+          titulo="Confirmção de Logout"
+          textoConteudo="Tem certeza que deseja sair?"
+          textoNao="Ficar"
+          textoSim="Sair"
+        />
       </div>
     );
   }
